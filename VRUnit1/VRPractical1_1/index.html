@@ -4,7 +4,7 @@
   </head>
   <body>
     <a-scene>
-      <a-box class="car" position="0 1 -4" height="1.5" width="2" depth="3" wireframe="true">
+      <a-box id="car" position="0 1 -4" height="1.5" width="2" depth="3" wireframe="true">
       <!--Tires-->
         <a-box position="-1 -0.75 -1" rotation="0 90 0" scale="0.5 0.5 0.5" wireframe="true" class="tire">
       <a-torus  radius="0.5" radius-tubular="0.1" rotation="0 0 0" color="#111"></a-torus>
@@ -82,5 +82,33 @@
       <a-sky color="#ECECEC"></a-sky>
       <a-camera position="0 1.4 5"></a-camera>
     </a-scene>
+    <script>
+      const car = document.getElementById("car")
+      let rotation = car.getAttribute("rotation") // rotation is vector object
+      let position = car.getAttribute("position") // rotation is vector object
+
+      let velocity = 0.00
+      let velocityvector = {x: 0, y: 0, z: 1}
+
+      function addVector(velocity, velocityvector) {
+        let positionx = position.x + velocity*Math.cos(velocityvector.x)
+        let positiony = position.y + velocity*Math.sin(velocityvector.y)
+        let positionz = position.z + velocity*Math.sin(velocityvector.z)
+
+        return {x: positionx, y:positiony, z:positionz} // returns position of car
+      }
+
+      function physics() {
+        let position = car.getAttribute("position") // rotation is vector object
+
+        let newposition = addVector(velocity, velocityvector)
+        
+        car.setAttribute("position", `${newposition.x} ${newposition.y} ${newposition.z}`)
+        requestAnimationFrame(physics)
+      }
+
+      requestAnimationFrame(physics)
+
+    </script>
   </body>
 </html>
