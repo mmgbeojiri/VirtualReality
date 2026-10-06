@@ -55,7 +55,7 @@
       <a-box color="#333" depth="3" width="2" height="0.5" position="0 -0.5 0"></a-box>
     
       <!--Headlights-->
-      <a-box wireframe="true" class="frontgrill" position="0 -0.125 1.375">
+      <a-box wireframe="true" class="frontgrill" position="0 -0.5 1.5">
       <a-box class="headlights" wireframe="true" position="0.5 0 0">
         <a-box color="#ddd" position="-0.125 0 0" height="0.25" depth="0.1" width="0.25"></a-box>
         <a-box color="#ffd" position="0.125 0 0" height="0.25" depth="0.1" width="0.25"></a-box>
@@ -72,10 +72,24 @@
       <a-box color="#333" position="0.875 0 0" height="0.25" depth="0.1" width="0.25"></a-box>
       </a-box>
       </a-box>
-
+      <!-- Top Chassis -->
       <a-cylinder position="0 -0.3 0.6" scale="0.5 1 1.25" color="#333" height="2" radius="0.7" theta-length="180" rotation="0 0 90"></a-cylinder>
       <a-cylinder position="0 -0.4 -0.3" scale="1 1 1.25" color="#333" height="2" radius="1" theta-length="180" rotation="0 0 90"></a-cylinder>
+      <!-- windows -->
+      <a-cylinder position="0 0.0 -0.1" scale="0.5 1 0.8" color="#000" height="2.1" radius="1" theta-length="90" rotation="0 0 90"></a-cylinder>
+      <a-box position="0 0.25 -0.5" scale="1 1 1" color="#000" width="2.1" depth="0.6" height="0.5"  rotation="0 0 0"></a-box>
 
+      <!--Windshield-->
+      <a-cylinder position="0 -0.4 -0.3" scale="0.99 0.9 1.3" color="#000" height="2" radius="1" theta-length="180" rotation="0 0 90"></a-cylinder>
+      
+      
+      <a-box wireframe="true" position="0 -0.5 -1.5" rotation="0 180 0">
+        
+              <a-box color="#f33" position="-0.5 0 0" height="0.25" depth="0.1" width="0.5"></a-box>
+              <a-text value="yaris" align="center"></a-text>
+              <a-box color="#f33" position="0.5 0 0" height="0.25" depth="0.1" width="0.5"></a-box>
+
+      </a-box>
     </a-box>
 
       <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
@@ -90,12 +104,11 @@
       let velocity = 0.00
       let velocityvector = {x: 0, y: 0, z: 1}
 
-      function addVector(velocity, velocityvector) {
-        let positionx = position.x + velocity*Math.cos(velocityvector.x)
-        let positiony = position.y + velocity*Math.sin(velocityvector.y)
-        let positionz = position.z + velocity*Math.sin(velocityvector.z)
+      function moveForward(velocity) {
+        let positionx = position.x + velocity*Math.cos(rotation.x)
+        let positionz = position.z + velocity*Math.sin(rotation.z)
 
-        return {x: positionx, y:positiony, z:positionz} // returns position of car
+        return {x: positionx, y:position.y, z:positionz} // returns position of car
       }
 
       function physics() {
