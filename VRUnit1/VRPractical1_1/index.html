@@ -101,22 +101,68 @@
       let rotation = car.getAttribute("rotation") // rotation is vector object
       let position = car.getAttribute("position") // rotation is vector object
 
-      let velocity = 0.00
-      let velocityvector = {x: 0, y: 0, z: 1}
+      
 
       function moveForward(velocity) {
-        let positionx = position.x + velocity*Math.cos(rotation.x)
-        let positionz = position.z + velocity*Math.sin(rotation.z)
+        let positionx = position.x + velocity*Math.cos(rotation.y )
+        let positionz = position.z + velocity*Math.sin(rotation.y)
 
         return {x: positionx, y:position.y, z:positionz} // returns position of car
       }
 
-      function physics() {
-        let position = car.getAttribute("position") // rotation is vector object
 
-        let newposition = addVector(velocity, velocityvector)
+      let wkey = 0
+      let skey = 0
+      let akey = 0
+      let dkey = 0
+      document.addEventListener("keydown", (e) => {
+        if (event.key === "i" || event.key === "I") {
+          wkey = 1;
+        }
+        if (event.key === "k" || event.key === "K") {
+          skey = 1;
+        }
+        if (event.key === "j" || event.key === "J") {
+          akey = 1;
+        }
+        if (event.key === "l" || event.key === "L") {
+          akey = 1;
+        }
+      })
+      document.addEventListener("keyup", (e) => {
+        if (event.key === "i" || event.key === "I") {
+          wkey = 0;
+        }
+        if (event.key === "k" || event.key === "K") {
+          skey = 0;
+        }
+        if (event.key === "j" || event.key === "J") {
+          akey = 0;
+        }
+        if (event.key === "l" || event.key === "L") {
+          akey = 0;
+        }
+      })
+
+      let magnitude = 0
+      let rotationAngle = 0
+      
+      function physics() {
+        position = car.getAttribute("position")
+        rotation = car.getAttribute("rotation")
+
+        magnitude += (wkey - skey) * 0.05
+        rotationAngle += (dkey-akey) * 90/3.14
+
+        let newRotation = rotation.y + (magnitude*0.1*rotationAngle)
+        car.setAttribute("rotation", `0 ${newRotation} 0`)
         
+        let newposition = moveForward(magnitude)
         car.setAttribute("position", `${newposition.x} ${newposition.y} ${newposition.z}`)
+
+        magnitude *= 0.9
+        rotationAngle*= 0.9
+        console.log(rotationAngle)
         requestAnimationFrame(physics)
       }
 
