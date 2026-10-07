@@ -4,9 +4,9 @@
   </head>
   <body>
     <a-scene>
-      <a-box id="car" position="0 1 -4" rotation="0 0 0" height="1.5" width="2" depth="3" wireframe="true">
+      <a-box id="car" position="0 0 0" rotation="0 0 0" height="1.5" width="2" depth="3" wireframe="true">
       <!--Tires-->
-        <a-box position="-1 -0.75 -1" rotation="0 90 0" scale="0.5 0.5 0.5" wireframe="true" class="tire">
+        <a-box position="-1 -0.75 -1" rotation="0 90 0" scale="0.5 0.5 0.5" wireframe="true" class="backtire">
       <a-torus  radius="0.5" radius-tubular="0.1" rotation="0 0 0" color="#111"></a-torus>
       <a-cylinder radius="0.1" height="0.707" rotation="0 0 60"></a-cylinder>
       <a-cylinder radius="0.1" height="0.707" rotation="0 0 120"></a-cylinder>
@@ -16,7 +16,7 @@
       <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0 -0.1 0" color="#111"></a-cylinder>
       <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="-0.1 0 0" color="#111"></a-cylinder>
       </a-box>
-      <a-box position="1 -0.75 -1" rotation="0 90 0" scale="0.5 0.5 0.5" wireframe="true" class="tire">
+      <a-box position="1 -0.75 -1" rotation="0 90 0" scale="0.5 0.5 0.5" wireframe="true" class="backtire">
         <a-torus  radius="0.5" radius-tubular="0.1" rotation="0 0 0" color="#111"></a-torus>
         <a-cylinder radius="0.1" height="0.707" rotation="0 0 60"></a-cylinder>
         <a-cylinder radius="0.1" height="0.707" rotation="0 0 120"></a-cylinder>
@@ -26,7 +26,7 @@
         <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0 -0.1 0" color="#111"></a-cylinder>
         <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="-0.1 0 0" color="#111"></a-cylinder>
       </a-box>
-      <a-box position="-1 -0.75 1" rotation="0 90 0" scale="0.5 0.5 0.5" wireframe="true" class="tire">
+      <a-box position="-1 -0.75 1" rotation="0 90 0" scale="0.5 0.5 0.5" wireframe="true" class="fronttire">
       <a-torus  radius="0.5" radius-tubular="0.1" rotation="0 0 0" color="#111"></a-torus>
       <a-cylinder radius="0.1" height="0.707" rotation="0 0 60"></a-cylinder>
       <a-cylinder radius="0.1" height="0.707" rotation="0 0 120"></a-cylinder>
@@ -36,7 +36,7 @@
       <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0 -0.1 0" color="#111"></a-cylinder>
       <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="-0.1 0 0" color="#111"></a-cylinder>
       </a-box>
-      <a-box position="1 -0.75 1" rotation="0 90 0" scale="0.5 0.5 0.5" wireframe="true" class="tire">
+      <a-box position="1 -0.75 1" rotation="0 90 0" scale="0.5 0.5 0.5" wireframe="true" class="fronttire">
         <a-torus  radius="0.5" radius-tubular="0.1" rotation="0 0 0" color="#111"></a-torus>
         <a-cylinder radius="0.1" height="0.707" rotation="0 0 60"></a-cylinder>
         <a-cylinder radius="0.1" height="0.707" rotation="0 0 120"></a-cylinder>
@@ -92,21 +92,26 @@
       </a-box>
     </a-box>
 
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+      <a-plane position="0 -1.5 0" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
       <a-sky color="#ECECEC"></a-sky>
-      <a-camera position="0 1.4 5"></a-camera>
+      <a-camera position="0 0.4 5">
+      </a-camera>
     </a-scene>
     <script>
       const car = document.getElementById("car")
       let rotation = car.getAttribute("rotation") // rotation is vector object
       let position = car.getAttribute("position") // rotation is vector object
 
-      
+      let fronttires = document.querySelectorAll(".fronttire")
+      let backtires = document.querySelectorAll(".backtire")
+
+      let forwardangle = 0
 
       function moveForward(velocity) {
+        forwardangle += velocity;
+        console.log(forwardangle)
         let positionx = position.x + velocity*Math.sin(rotation.y * Math.PI/180)
         let positionz = position.z + velocity*Math.cos(rotation.y * Math.PI/180)
-
         return {x: positionx, y:position.y, z:positionz} // returns position of car
       }
 
@@ -154,6 +159,16 @@
         magnitude += (wkey - skey) * 0.05
         rotationAngle += (akey-dkey) * 1
 
+        backtires.forEach(tire => {
+          tire.setAttribute("rotation", `0 90 ${forwardangle*90}`)
+        });
+
+        fronttires.forEach(tire => {
+          tire.setAttribute("rotation", `0 ${(rotationAngle*3)+90} ${forwardangle*90}`)
+          console.log("set tire")
+        });
+
+
         let newRotation = rotation.y + (rotationAngle*magnitude)
         car.setAttribute("rotation", `0 ${newRotation} 0`)
         
@@ -163,7 +178,6 @@
 
         magnitude *= 0.9
         rotationAngle*= 0.9
-        console.log(newRotation)
         requestAnimationFrame(physics)
       }
 
