@@ -4,7 +4,7 @@
   </head>
   <body>
     <a-scene>
-      <a-box id="car" position="0 1 -4" height="1.5" width="2" depth="3" wireframe="true">
+      <a-box id="car" position="0 1 -4" rotation="0 0 0" height="1.5" width="2" depth="3" wireframe="true">
       <!--Tires-->
         <a-box position="-1 -0.75 -1" rotation="0 90 0" scale="0.5 0.5 0.5" wireframe="true" class="tire">
       <a-torus  radius="0.5" radius-tubular="0.1" rotation="0 0 0" color="#111"></a-torus>
@@ -104,8 +104,8 @@
       
 
       function moveForward(velocity) {
-        let positionx = position.x + velocity*Math.cos(rotation.y )
-        let positionz = position.z + velocity*Math.sin(rotation.y)
+        let positionx = position.x + velocity*Math.sin(rotation.y * Math.PI/180)
+        let positionz = position.z + velocity*Math.cos(rotation.y * Math.PI/180)
 
         return {x: positionx, y:position.y, z:positionz} // returns position of car
       }
@@ -126,7 +126,7 @@
           akey = 1;
         }
         if (event.key === "l" || event.key === "L") {
-          akey = 1;
+          dkey = 1;
         }
       })
       document.addEventListener("keyup", (e) => {
@@ -140,7 +140,7 @@
           akey = 0;
         }
         if (event.key === "l" || event.key === "L") {
-          akey = 0;
+          dkey = 0;
         }
       })
 
@@ -152,17 +152,18 @@
         rotation = car.getAttribute("rotation")
 
         magnitude += (wkey - skey) * 0.05
-        rotationAngle += (dkey-akey) * 90/3.14
+        rotationAngle += (akey-dkey) * 1
 
-        let newRotation = rotation.y + (magnitude*0.1*rotationAngle)
+        let newRotation = rotation.y + (rotationAngle*magnitude)
         car.setAttribute("rotation", `0 ${newRotation} 0`)
+        
         
         let newposition = moveForward(magnitude)
         car.setAttribute("position", `${newposition.x} ${newposition.y} ${newposition.z}`)
 
         magnitude *= 0.9
         rotationAngle*= 0.9
-        console.log(rotationAngle)
+        console.log(newRotation)
         requestAnimationFrame(physics)
       }
 
