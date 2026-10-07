@@ -5,6 +5,184 @@
   <body>
     <a-scene>
       <a-box id="car" position="0 0 0" rotation="0 0 0" height="1.5" width="2" depth="3" wireframe="true">
+        <a-camera id="carCam" active="false" position="0 1 -2" rotation="0 180 0"></a-camera>
+
+        <!--Tires-->
+        <a-box position="-1 -0.75 -1" rotation="0 90 0" scale="0.5 0.5 0.5" wireframe="true" class="backtire">
+      <a-torus  radius="0.5" radius-tubular="0.1" rotation="0 0 0" color="#111"></a-torus>
+      <a-cylinder radius="0.1" height="0.707" rotation="0 0 60"></a-cylinder>
+      <a-cylinder radius="0.1" height="0.707" rotation="0 0 120"></a-cylinder>
+      <a-cylinder radius="0.1" height="0.707" rotation="0 0 180"></a-cylinder>
+      <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0 0.1 0" color="#111"></a-cylinder>
+      <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0.1 0 0" color="#111"></a-cylinder>
+      <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0 -0.1 0" color="#111"></a-cylinder>
+      <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="-0.1 0 0" color="#111"></a-cylinder>
+      </a-box>
+      <a-box position="1 -0.75 -1" rotation="0 90 0" scale="0.5 0.5 0.5" wireframe="true" class="backtire">
+        <a-torus  radius="0.5" radius-tubular="0.1" rotation="0 0 0" color="#111"></a-torus>
+        <a-cylinder radius="0.1" height="0.707" rotation="0 0 60"></a-cylinder>
+        <a-cylinder radius="0.1" height="0.707" rotation="0 0 120"></a-cylinder>
+        <a-cylinder radius="0.1" height="0.707" rotation="0 0 180"></a-cylinder>
+        <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0 0.1 0" color="#111"></a-cylinder>
+        <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0.1 0 0" color="#111"></a-cylinder>
+        <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0 -0.1 0" color="#111"></a-cylinder>
+        <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="-0.1 0 0" color="#111"></a-cylinder>
+      </a-box>
+      <a-box position="-1 -0.75 1" rotation="0 90 0" scale="0.5 0.5 0.5" wireframe="true" class="fronttire">
+      <a-torus  radius="0.5" radius-tubular="0.1" rotation="0 0 0" color="#111"></a-torus>
+      <a-cylinder radius="0.1" height="0.707" rotation="0 0 60"></a-cylinder>
+      <a-cylinder radius="0.1" height="0.707" rotation="0 0 120"></a-cylinder>
+      <a-cylinder radius="0.1" height="0.707" rotation="0 0 180"></a-cylinder>
+      <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0 0.1 0" color="#111"></a-cylinder>
+      <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0.1 0 0" color="#111"></a-cylinder>
+      <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0 -0.1 0" color="#111"></a-cylinder>
+      <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="-0.1 0 0" color="#111"></a-cylinder>
+      </a-box>
+      <a-box position="1 -0.75 1" rotation="0 90 0" scale="0.5 0.5 0.5" wireframe="true" class="fronttire">
+        <a-torus  radius="0.5" radius-tubular="0.1" rotation="0 0 0" color="#111"></a-torus>
+        <a-cylinder radius="0.1" height="0.707" rotation="0 0 60"></a-cylinder>
+        <a-cylinder radius="0.1" height="0.707" rotation="0 0 120"></a-cylinder>
+        <a-cylinder radius="0.1" height="0.707" rotation="0 0 180"></a-cylinder>
+        <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0 0.1 0" color="#111"></a-cylinder>
+        <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0.1 0 0" color="#111"></a-cylinder>
+        <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0 -0.1 0" color="#111"></a-cylinder>
+        <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="-0.1 0 0" color="#111"></a-cylinder>
+      </a-box>
+
+      <!-- Arcs + Bottom Chassis-->
+      <a-torus position="-1 -0.75 -1" arc="180" radius-tubular="0.05" radius="0.5" color="#333" rotation="0 90 0"></a-torus>
+      <a-torus position="1 -0.75 -1" arc="180" radius-tubular="0.05" radius="0.5" color="#333" rotation="0 90 0"></a-torus>
+      <a-torus position="-1 -0.75 1" arc="180" radius-tubular="0.05" radius="0.5" color="#333" rotation="0 90 0"></a-torus>
+      <a-torus position="1 -0.75 1" arc="180" radius-tubular="0.05" radius="0.5" color="#333" rotation="0 90 0"></a-torus>
+      <a-box color="#333" depth="3" width="2" height="0.5" position="0 -0.5 0"></a-box>
+    
+      <!--Headlights-->
+      <a-box wireframe="true" class="frontgrill" position="0 -0.5 1.5">
+      <a-box class="headlights" wireframe="true" position="0.5 0 0">
+        <a-box color="#ddd" position="-0.125 0 0" height="0.25" depth="0.1" width="0.25"></a-box>
+        <a-box color="#ffd" position="0.125 0 0" height="0.25" depth="0.1" width="0.25"></a-box>
+      </a-box>
+
+      <a-box class="headlights" wireframe="true" position="-0.5 0 0" rotation="0 0 180">
+        <a-box color="#ddd" position="-0.125 0 0" height="0.25" depth="0.1" width="0.25"></a-box>
+        <a-box color="#ffd" position="0.125 0 0" height="0.25" depth="0.1" width="0.25"></a-box>
+      </a-box>
+      
+      <a-box class="grill" wireframe="true" position="0 0 0">
+      <a-box color="#111" position="0 0 0" height="0.25" depth="0.1" width="0.5"></a-box>
+      <a-box color="#333" position="-0.875 0 0" height="0.25" depth="0.1" width="0.25"></a-box>
+      <a-box color="#333" position="0.875 0 0" height="0.25" depth="0.1" width="0.25"></a-box>
+      </a-box>
+      </a-box>
+      <!-- Top Chassis -->
+      <a-cylinder position="0 -0.3 0.6" scale="0.5 1 1.25" color="#333" height="2" radius="0.7" theta-length="180" rotation="0 0 90"></a-cylinder>
+      <a-cylinder position="0 -0.4 -0.3" scale="1 1 1.25" color="#333" height="2" radius="1" theta-length="180" rotation="0 0 90"></a-cylinder>
+      <!-- windows -->
+      <a-cylinder position="0 0.0 -0.1" scale="0.5 1 0.8" color="#000" height="2.1" radius="1" theta-length="90" rotation="0 0 90"></a-cylinder>
+      <a-box position="0 0.25 -0.5" scale="1 1 1" color="#000" width="2.1" depth="0.6" height="0.5"  rotation="0 0 0"></a-box>
+
+      <!--Windshield-->
+      <a-cylinder position="0 -0.4 -0.3" scale="0.99 0.9 1.3" color="#000" height="2" radius="1" theta-length="180" rotation="0 0 90"></a-cylinder>
+      
+      
+      <a-box wireframe="true" position="0 -0.5 -1.5" rotation="0 180 0">
+        
+              <a-box color="#f33" position="-0.5 0 0" height="0.25" depth="0.1" width="0.5"></a-box>
+              <a-text value="yaris" align="center"></a-text>
+              <a-box color="#f33" position="0.5 0 0" height="0.25" depth="0.1" width="0.5"></a-box>
+
+      </a-box>
+    </a-box>
+
+    <a-box class="car" position="0 0 -6" rotation="0 90 0" height="1.5" width="2" depth="3" wireframe="true">
+      <!--Tires-->
+        <a-box position="-1 -0.75 -1" rotation="0 90 0" scale="0.5 0.5 0.5" wireframe="true" class="backtire">
+      <a-torus  radius="0.5" radius-tubular="0.1" rotation="0 0 0" color="#111"></a-torus>
+      <a-cylinder radius="0.1" height="0.707" rotation="0 0 60"></a-cylinder>
+      <a-cylinder radius="0.1" height="0.707" rotation="0 0 120"></a-cylinder>
+      <a-cylinder radius="0.1" height="0.707" rotation="0 0 180"></a-cylinder>
+      <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0 0.1 0" color="#111"></a-cylinder>
+      <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0.1 0 0" color="#111"></a-cylinder>
+      <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0 -0.1 0" color="#111"></a-cylinder>
+      <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="-0.1 0 0" color="#111"></a-cylinder>
+      </a-box>
+      <a-box position="1 -0.75 -1" rotation="0 90 0" scale="0.5 0.5 0.5" wireframe="true" class="backtire">
+        <a-torus  radius="0.5" radius-tubular="0.1" rotation="0 0 0" color="#111"></a-torus>
+        <a-cylinder radius="0.1" height="0.707" rotation="0 0 60"></a-cylinder>
+        <a-cylinder radius="0.1" height="0.707" rotation="0 0 120"></a-cylinder>
+        <a-cylinder radius="0.1" height="0.707" rotation="0 0 180"></a-cylinder>
+        <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0 0.1 0" color="#111"></a-cylinder>
+        <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0.1 0 0" color="#111"></a-cylinder>
+        <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0 -0.1 0" color="#111"></a-cylinder>
+        <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="-0.1 0 0" color="#111"></a-cylinder>
+      </a-box>
+      <a-box position="-1 -0.75 1" rotation="0 90 0" scale="0.5 0.5 0.5" wireframe="true" class="fronttire">
+      <a-torus  radius="0.5" radius-tubular="0.1" rotation="0 0 0" color="#111"></a-torus>
+      <a-cylinder radius="0.1" height="0.707" rotation="0 0 60"></a-cylinder>
+      <a-cylinder radius="0.1" height="0.707" rotation="0 0 120"></a-cylinder>
+      <a-cylinder radius="0.1" height="0.707" rotation="0 0 180"></a-cylinder>
+      <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0 0.1 0" color="#111"></a-cylinder>
+      <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0.1 0 0" color="#111"></a-cylinder>
+      <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0 -0.1 0" color="#111"></a-cylinder>
+      <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="-0.1 0 0" color="#111"></a-cylinder>
+      </a-box>
+      <a-box position="1 -0.75 1" rotation="0 90 0" scale="0.5 0.5 0.5" wireframe="true" class="fronttire">
+        <a-torus  radius="0.5" radius-tubular="0.1" rotation="0 0 0" color="#111"></a-torus>
+        <a-cylinder radius="0.1" height="0.707" rotation="0 0 60"></a-cylinder>
+        <a-cylinder radius="0.1" height="0.707" rotation="0 0 120"></a-cylinder>
+        <a-cylinder radius="0.1" height="0.707" rotation="0 0 180"></a-cylinder>
+        <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0 0.1 0" color="#111"></a-cylinder>
+        <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0.1 0 0" color="#111"></a-cylinder>
+        <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="0 -0.1 0" color="#111"></a-cylinder>
+        <a-cylinder radius="0.025" height="0.2" rotation="90 0 0" position="-0.1 0 0" color="#111"></a-cylinder>
+      </a-box>
+
+      <!-- Arcs + Bottom Chassis-->
+      <a-torus position="-1 -0.75 -1" arc="180" radius-tubular="0.05" radius="0.5" color="#333" rotation="0 90 0"></a-torus>
+      <a-torus position="1 -0.75 -1" arc="180" radius-tubular="0.05" radius="0.5" color="#333" rotation="0 90 0"></a-torus>
+      <a-torus position="-1 -0.75 1" arc="180" radius-tubular="0.05" radius="0.5" color="#333" rotation="0 90 0"></a-torus>
+      <a-torus position="1 -0.75 1" arc="180" radius-tubular="0.05" radius="0.5" color="#333" rotation="0 90 0"></a-torus>
+      <a-box color="#333" depth="3" width="2" height="0.5" position="0 -0.5 0"></a-box>
+    
+      <!--Headlights-->
+      <a-box wireframe="true" class="frontgrill" position="0 -0.5 1.5">
+      <a-box class="headlights" wireframe="true" position="0.5 0 0">
+        <a-box color="#ddd" position="-0.125 0 0" height="0.25" depth="0.1" width="0.25"></a-box>
+        <a-box color="#ffd" position="0.125 0 0" height="0.25" depth="0.1" width="0.25"></a-box>
+      </a-box>
+
+      <a-box class="headlights" wireframe="true" position="-0.5 0 0" rotation="0 0 180">
+        <a-box color="#ddd" position="-0.125 0 0" height="0.25" depth="0.1" width="0.25"></a-box>
+        <a-box color="#ffd" position="0.125 0 0" height="0.25" depth="0.1" width="0.25"></a-box>
+      </a-box>
+      
+      <a-box class="grill" wireframe="true" position="0 0 0">
+      <a-box color="#111" position="0 0 0" height="0.25" depth="0.1" width="0.5"></a-box>
+      <a-box color="#333" position="-0.875 0 0" height="0.25" depth="0.1" width="0.25"></a-box>
+      <a-box color="#333" position="0.875 0 0" height="0.25" depth="0.1" width="0.25"></a-box>
+      </a-box>
+      </a-box>
+      <!-- Top Chassis -->
+      <a-cylinder position="0 -0.3 0.6" scale="0.5 1 1.25" color="#333" height="2" radius="0.7" theta-length="180" rotation="0 0 90"></a-cylinder>
+      <a-cylinder position="0 -0.4 -0.3" scale="1 1 1.25" color="#333" height="2" radius="1" theta-length="180" rotation="0 0 90"></a-cylinder>
+      <!-- windows -->
+      <a-cylinder position="0 0.0 -0.1" scale="0.5 1 0.8" color="#000" height="2.1" radius="1" theta-length="90" rotation="0 0 90"></a-cylinder>
+      <a-box position="0 0.25 -0.5" scale="1 1 1" color="#000" width="2.1" depth="0.6" height="0.5"  rotation="0 0 0"></a-box>
+
+      <!--Windshield-->
+      <a-cylinder position="0 -0.4 -0.3" scale="0.99 0.9 1.3" color="#000" height="2" radius="1" theta-length="180" rotation="0 0 90"></a-cylinder>
+      
+      
+      <a-box wireframe="true" position="0 -0.5 -1.5" rotation="0 180 0">
+        
+              <a-box color="#f33" position="-0.5 0 0" height="0.25" depth="0.1" width="0.5"></a-box>
+              <a-text value="yaris" align="center"></a-text>
+              <a-box color="#f33" position="0.5 0 0" height="0.25" depth="0.1" width="0.5"></a-box>
+
+      </a-box>
+    </a-box>
+
+    <a-box class="car" position="-10 0 0" rotation="0 180 0" height="1.5" width="2" depth="3" wireframe="true">
       <!--Tires-->
         <a-box position="-1 -0.75 -1" rotation="0 90 0" scale="0.5 0.5 0.5" wireframe="true" class="backtire">
       <a-torus  radius="0.5" radius-tubular="0.1" rotation="0 0 0" color="#111"></a-torus>
@@ -94,11 +272,12 @@
 
       <a-plane position="0 -1.5 0" rotation="-90 0 0" width="10" height="10" color="#7BC8A4"></a-plane>
       <a-sky color="#ECECEC"></a-sky>
-      <a-camera position="0 0.4 5">
-      </a-camera>
+      <a-camera position="0 0.4 5" id="playerCam" active="true"></a-camera>
     </a-scene>
     <script>
       const car = document.getElementById("car")
+      const carcam = document.getElementById("carCam")
+      const playercam = document.getElementById("playerCam")
       let rotation = car.getAttribute("rotation") // rotation is vector object
       let position = car.getAttribute("position") // rotation is vector object
 
@@ -132,6 +311,17 @@
         }
         if (event.key === "l" || event.key === "L") {
           dkey = 1;
+        }
+
+        if (event.key === " ") {
+          if (playercam.getAttribute("active") == "true") {
+            playercam.setAttribute("active", false);
+            carcam.setAttribute("active", true);
+          } else {
+            carcam.setAttribute("active", false);
+            playercam.setAttribute("active", true);
+          }
+          
         }
       })
       document.addEventListener("keyup", (e) => {
@@ -176,6 +366,8 @@
         let newposition = moveForward(magnitude)
         car.setAttribute("position", `${newposition.x} ${newposition.y} ${newposition.z}`)
 
+        //carcam.setAttribute("position", `${position.x} ${position.y+0.5} ${position.z+0.7}`)
+        //carcam.setAttribute("rotation", `${rotation.x} ${rotation.y} ${rotation.z}`)
         magnitude *= 0.9
         rotationAngle*= 0.9
         requestAnimationFrame(physics)
