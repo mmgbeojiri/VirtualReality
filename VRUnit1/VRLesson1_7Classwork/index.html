@@ -7,8 +7,28 @@
       <a-assets>
         <img id="texture" src="pacman_maze.jpg" />
       </a-assets>
+      <a-entity position="0 1 -5">
+      <a-sphere id="pac" color="#ffff00"  rotation="-45 90 90" side="double" phi-start="90" phi-length="270"></a-sphere>
+      <a-sphere color="#000" position="0 0.8 0.5" radius="0.1"></a-sphere>
+      <a-sphere color="#000" position="0 0.8 -0.5" radius="0.1"></a-sphere>
+
+      </a-entity>
       <a-plane position="0 0 -4" rotation="-90 0 0" width="20" height="20" repeat="5 5" src="#texture"></a-plane>
       <a-sky color="black"></a-sky>
     </a-scene>
+
+    <script>
+      let pac = document.getElementById("pac")
+      let timer = 0
+      function animate() {
+        timer += 1
+        
+        pac.setAttribute("phi-start", 90 - 45*Math.sin((1/4)*timer));
+        pac.setAttribute("phi-length", 270 + 90*Math.sin((1/4)*timer));
+        requestAnimationFrame(animate)
+      }
+      
+      animate()
+    </script>
   </body>
 </html>
