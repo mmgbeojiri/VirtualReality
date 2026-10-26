@@ -13,8 +13,16 @@ window.addEventListener("DOMContentLoaded",function() {
     createTree(x,0,z);
   }
    //Task 2: Use the createCloud(...)  to add several clouds to the scene at various positions.
+  for (let i = 0; i < 20; i++) {
 
+    createCloud(rnd(-50,50), rnd(15,20), rnd(-50, 50))
+  }
    //Task 4: Use the createHouse(...)  to add several houses to the scene at various positions.
+
+  for (let i = 0; i < 5; i++) {
+
+    createHouse(rnd(-20,20), rnd(-20, 20))
+  }
 })
 
 /* Task 1: Create a function createCloud that,
@@ -26,6 +34,20 @@ window.addEventListener("DOMContentLoaded",function() {
       6) Add the cloud entity to the scene
 */
 
+function createCloud(x, y, z) {
+  let cloud = document.createElement("a-entity");
+  cloud.setAttribute("position", {x:x, y:y, z:z})
+  let radius = 2;
+  for (let i = 0; i < 3; i++) {
+    let sphere = document.createElement("a-sphere")
+    sphere.setAttribute("position", {x: (Math.random()-0.5)*radius,y: (Math.random()-0.5)*radius,z: (Math.random()-0.5)*radius})
+    sphere.setAttribute("radius", radius);
+    sphere.setAttribute("opacity", 0.7);
+    cloud.append(sphere);
+  }
+  document.querySelector("a-scene").append(cloud)
+}
+
 /* Task 3: Create a function createHouse that,
       1) Accept an x and z position for where to place the house "entity"
       2) Create an entity to store all the components that will make up the house
@@ -35,6 +57,28 @@ window.addEventListener("DOMContentLoaded",function() {
       5) Set house entities position to those passed in to the function.
       6) Add the house entity to the scene
 */
+function createHouse(x, z) {
+  let house = document.createElement("a-entity");
+  house.setAttribute("position", {x:x, y:2, z:z})
+  
+  let box = document.createElement("a-box");
+  box.setAttribute("width", 5)
+  box.setAttribute("height", 5)
+  box.setAttribute("depth", 4)
+  box.setAttribute("color","red")
+  house.append(box)
+
+  let cylinder = document.createElement("a-cylinder");
+  cylinder.setAttribute("segments-radial", 3)
+  cylinder.setAttribute("color", "brown")
+  cylinder.setAttribute("position", {x:0, y:3, z:0})
+  cylinder.setAttribute("radius", 2.5)
+  cylinder.setAttribute("rotation", "270 0 0")
+  cylinder.setAttribute("scale", "1.25 5 0.5")
+  house.append(cylinder)
+  document.querySelector("a-scene").append(house)
+}
+
 function createTree(x, y, z){
   let tree = document.createElement("a-entity");
   
