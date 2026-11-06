@@ -17,6 +17,7 @@ class UFO {
         this.enitity.append(this.base)
 
         this.enitity.setAttribute("dynamic-body", "shape:box")
+        this.enitity.setAttribute("rotation", `${(Math.random()*10)-5} ${(Math.random()*10)-5} ${(Math.random()*10)-5}` )
 
         document.querySelector("a-scene").append(this.enitity)
     }
