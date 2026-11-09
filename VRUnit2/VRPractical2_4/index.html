@@ -3,7 +3,6 @@
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
     <script src="rocket.js"> </script>
     <script src="ufo.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.2/dist/aframe-physics-system.min.js"></script>
 
   </head>
   <body>
@@ -4917,7 +4916,6 @@
         for (let element of document.getElementById(houseid).querySelectorAll('a-box')) {
           if (element.getAttribute("src") == "#quartztexture") {
             element.setAttribute("src", texture)
-            element.setAttribute("static-body", "shape:box")
           }
         };
       }
@@ -4935,11 +4933,11 @@
           rocketList.push(new Rocket(i, (Math.random()*30) - 30, j))
         }
       }
-
+      ufoList = []
       for (let i = -50; i < 50; i+=10) {
         for (let j = -50; j < 50; j+=10) {
         
-          new UFO(i, 30, j)
+          ufoList.push(new UFO(i, 50+((Math.random()*10)-5), j))
         }
       }
       
@@ -4949,6 +4947,9 @@
           
           rocket.launch();
         });
+        ufoList.forEach(ufo =>{
+          ufo.fall()
+        })
         requestAnimationFrame(loop)
       }
       loop()

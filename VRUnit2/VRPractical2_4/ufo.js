@@ -4,7 +4,7 @@ class UFO {
         this.x = x
         this.y = y
         this.z = z
-        this.dy = -1*(Math.random())
+        this.dy = -0.1
         this.enitity.setAttribute("position", {x:this.x, y:this.y, z:this.z})
        
         this.circle = document.createElement("a-sphere");
@@ -16,14 +16,15 @@ class UFO {
         this.base.setAttribute("position", "0 -0.8 0");
         this.enitity.append(this.base)
 
-        this.enitity.setAttribute("dynamic-body", "shape:box")
-        this.enitity.setAttribute("rotation", `${(Math.random()*10)-5} ${(Math.random()*10)-5} ${(Math.random()*10)-5}` )
 
         document.querySelector("a-scene").append(this.enitity)
     }
 
-    launch() {
+    fall() {
         this.y += this.dy;
+        if (this.y < 1) {
+            this.y = 1;
+        }
         this.enitity.setAttribute("position", {x:this.x, y:this.y, z:this.z})
     }
       //    <a-cone color="brown" position="0 3.5 0"></a-cone>
