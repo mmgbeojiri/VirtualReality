@@ -4,7 +4,14 @@ class UFO {
         this.x = x
         this.y = y
         this.z = z
+        this.dx = 0
+        this.dz = 0
         this.dy = -0.1
+        this.opacity = 0
+        this.do = 0.01
+        this.randomValueX = (Math.random()-0.5)/60
+        this.randomValueY = (Math.random()-0.5)/60
+
         this.enitity.setAttribute("position", {x:this.x, y:this.y, z:this.z})
        
         this.circle = document.createElement("a-sphere");
@@ -16,14 +23,29 @@ class UFO {
         this.base.setAttribute("position", "0 -0.8 0");
         this.enitity.append(this.base)
 
+        this.tractor = document.createElement("a-cylinder");
+        this.tractor.setAttribute("height", 10);
+        this.tractor.setAttribute("color", "green")
+        this.tractor.setAttribute("opacity", "0")
+        this.tractor.setAttribute("position", "0 -5 0")
+        this.enitity.append(this.tractor)
 
         document.querySelector("a-scene").append(this.enitity)
     }
 
     fall() {
         this.y += this.dy;
-        if (this.y < 1) {
-            this.y = 1;
+        this.x += this.dx;
+        this.z += this.dz;
+
+        if (this.y < 10) {
+            this.y = 10;
+            this.opacity += this.do
+            this.tractor.setAttribute("opacity", this.opacity)
+            if (this.opacity > 1) {
+                this.dx += this.randomValueX
+                this.dz += this.randomValuey;
+            }
         }
         this.enitity.setAttribute("position", {x:this.x, y:this.y, z:this.z})
     }
