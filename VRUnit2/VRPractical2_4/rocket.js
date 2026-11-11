@@ -4,7 +4,7 @@ class Rocket {
         this.x = x
         this.y = y
         this.z = z
-        this.dy = (Math.random())
+        this.dy = ((Math.random()*0.3) + 0.05)
         this.enitity.setAttribute("position", {x:this.x, y:this.y, z:this.z})
         this.cone = document.createElement("a-cone")
         this.cone.setAttribute("position", "0 3.5 0")
@@ -22,8 +22,15 @@ class Rocket {
         this.jetfuel.setAttribute("opacity", "0.5")
         this.jetfuel.setAttribute("rotation", "0 0 180")
         this.jetfuel.setAttribute("scale", "0.5 2 0.5")
-        this.jetfuel.setAttribute("position", "0 -1 0")
+        this.jetfuel.setAttribute("position", "0 -2 0")
         this.enitity.append(this.jetfuel)
+
+        this.jetcone = document.createElement("a-cone");
+        this.jetcone.setAttribute("color", "brown");
+        this.jetcone.setAttribute("rotation", "0 0 0")
+        this.jetcone.setAttribute("scale", "0.7 2 0.7")
+        this.jetcone.setAttribute("position", "0 -0.5 0")
+        this.enitity.append(this.jetcone)
 
         document.querySelector("a-scene").append(this.enitity)
     }

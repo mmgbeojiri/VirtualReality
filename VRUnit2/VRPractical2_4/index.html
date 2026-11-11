@@ -631,7 +631,7 @@
       </a-entity>
       </a-entity>
 
-      <a-box student="Michael Mgbeojirikwe"  id="michaelcar" position="-10 1 -4" rotation="0 0 0" height="1.5" width="2" depth="3" wireframe="true" opacity="0">
+      <a-box student="Michael Mgbeojirikwe"  class="car" position="-10 1 -4" rotation="0 0 0" height="1.5" width="2" depth="3" wireframe="true" opacity="0">
           <a-camera id="carCam" active="false" position="0 1 -2" rotation="0 180 0"></a-camera>
 
           <!--Tires-->
@@ -1334,7 +1334,7 @@
         
       </a-entity>
       </a-entity>
-      <a-box student="Michael Mgbeojirikwe"  id="michaelcar" position="-10 1 -4" rotation="0 0 0" height="1.5" width="2" depth="3" wireframe="true" opacity="0">
+      <a-box student="Michael Mgbeojirikwe"  class="car" position="-10 1 -4" rotation="0 0 0" height="1.5" width="2" depth="3" wireframe="true" opacity="0">
           <a-camera id="carCam" active="false" position="0 1 -2" rotation="0 180 0"></a-camera>
 
           <!--Tires-->
@@ -2036,7 +2036,7 @@
         
       </a-entity>
       </a-entity>
-      <a-box student="Michael Mgbeojirikwe"  id="michaelcar" position="-10 1 -4" rotation="0 0 0" height="1.5" width="2" depth="3" wireframe="true" opacity="0">
+      <a-box student="Michael Mgbeojirikwe"  class="car" position="-10 1 -4" rotation="0 0 0" height="1.5" width="2" depth="3" wireframe="true" opacity="0">
           <a-camera id="carCam" active="false" position="0 1 -2" rotation="0 180 0"></a-camera>
 
           <!--Tires-->
@@ -2739,7 +2739,7 @@
       </a-entity>
       </a-entity>
 
-      <a-box student="Michael Mgbeojirikwe"  id="michaelcar" position="-10 1 -4" rotation="0 0 0" height="1.5" width="2" depth="3" wireframe="true" opacity="0">
+      <a-box student="Michael Mgbeojirikwe"  class="car" position="-10 1 -4" rotation="0 0 0" height="1.5" width="2" depth="3" wireframe="true" opacity="0">
           <a-camera id="carCam" active="false" position="0 1 -2" rotation="0 180 0"></a-camera>
 
           <!--Tires-->
@@ -3442,7 +3442,7 @@
         
       </a-entity>
       </a-entity>
-      <a-box student="Michael Mgbeojirikwe"  id="michaelcar" position="-10 1 -4" rotation="0 0 0" height="1.5" width="2" depth="3" wireframe="true" opacity="0">
+      <a-box student="Michael Mgbeojirikwe"  class="car" position="-10 1 -4" rotation="0 0 0" height="1.5" width="2" depth="3" wireframe="true" opacity="0">
           <a-camera id="carCam" active="false" position="0 1 -2" rotation="0 180 0"></a-camera>
 
           <!--Tires-->
@@ -4144,7 +4144,7 @@
         
       </a-entity>
       </a-entity>
-      <a-box student="Michael Mgbeojirikwe"  id="michaelcar" position="-10 1 -4" rotation="0 0 0" height="1.5" width="2" depth="3" wireframe="true" opacity="0">
+      <a-box student="Michael Mgbeojirikwe"  class="car" position="-10 1 -4" rotation="0 0 0" height="1.5" width="2" depth="3" wireframe="true" opacity="0">
           <a-camera id="carCam" active="false" position="0 1 -2" rotation="0 180 0"></a-camera>
 
           <!--Tires-->
@@ -4235,7 +4235,7 @@
       </a-box>
       </a-entity>
 
-      <a-box student="Michael Mgbeojirikwe"  id="michaelcar" position="-5 1 13" rotation="0 90 0" height="1.5" width="2" depth="3" wireframe="true" opacity="0">
+      <a-box student="Michael Mgbeojirikwe"  class="car" position="-5 1 13" rotation="0 90 0" height="1.5" width="2" depth="3" wireframe="true" opacity="0">
           <a-camera id="carCam" active="false" position="0 1 -2" rotation="0 180 0"></a-camera>
 
           <!--Tires-->
@@ -4325,7 +4325,7 @@
         </a-box>
       </a-box>
 
-      <a-box student="Michael Mgbeojirikwe"  id="michaelcar" position="10 1 7" rotation="0 -90 0" height="1.5" width="2" depth="3" wireframe="true" opacity="0">
+      <a-box student="Michael Mgbeojirikwe"  class="car" position="10 1 7" rotation="0 -90 0" height="1.5" width="2" depth="3" wireframe="true" opacity="0">
           <a-camera id="carCam" active="false" position="0 1 -2" rotation="0 180 0"></a-camera>
 
           <!--Tires-->
@@ -4937,11 +4937,13 @@
       for (let i = -50; i < 50; i+=10) {
         for (let j = -50; j < 50; j+=10) {
         
-          ufoList.push(new UFO(i, 50+((Math.random()*10)-5), j))
+          ufoList.push(new UFO(i, 100+((Math.random()*10)-5), j))
         }
       }
       
-
+      let timer = 0
+      let carlist = document.querySelectorAll(".car");
+      console.log(carlist)
       function loop() {
         rocketList.forEach(rocket => {
           
@@ -4950,6 +4952,12 @@
         ufoList.forEach(ufo =>{
           ufo.fall()
         })
+        carlist.forEach(car => {
+          car.setAttribute("scale", `${(0.5*Math.sin(timer/15))+1} ${(-0.5*Math.sin(timer/15))+1} 1`)
+          let position = car.object3D.position;
+          position.y = (-0.5 * Math.sin(timer / 15)) + 1;
+        })
+        timer++;
         requestAnimationFrame(loop)
       }
       loop()
