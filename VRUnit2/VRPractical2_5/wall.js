@@ -9,12 +9,13 @@ class Wall {
     
     this.wall = document.createElement("a-box")
 
-    this.wall.setAttribute("color","#c6c674");
+    this.wall.setAttribute("color","#ffffbb");
     this.wall.setAttribute("height", 3)
     this.wall.setAttribute("width", this.scale);
     this.wall.setAttribute("depth", this.scale)
     this.wall.setAttribute("position",{x:this.x,y:this.y,z:this.z});
     this.wall.setAttribute("src", "#backroomsWallpaper")
+    this.wall.setAttribute("repeat", "1 3")
 
     this.board = document.createElement("a-box")
     this.board.setAttribute("color", "#636232");
