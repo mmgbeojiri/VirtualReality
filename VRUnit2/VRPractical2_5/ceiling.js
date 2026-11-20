@@ -16,13 +16,23 @@ class Ceiling {
     this.bigtile.setAttribute("depth", this.scale);
 
     this.smalltile = document.createElement("a-box")
-    this.smalltile.setAttribute("color","#6b6134");
-    if (id % 5 == 0){
+    this.smalltile.setAttribute("color","#f3e8b4");
+    if (id % 9 == 0){
       this.smalltile.setAttribute("color","#f9f9f7");
+      this.smalltile.setAttribute("shader", "flat")
+      this.light = document.createElement("a-light");
+      this.light.setAttribute("intensity", "1")
+      this.light.setAttribute("position",{x:0, y:-0.2, z:0});
+      
+      this.light.setAttribute("type", "point")
+      //this.obj.append(this.light)
+    } else {
+      this.smalltile.setAttribute("src", "#tile")
+
     }
     this.smalltile.setAttribute("height", 0.1)
-    this.smalltile.setAttribute("width", this.scale*0.9);
-    this.smalltile.setAttribute("depth", this.scale*0.9);
+    this.smalltile.setAttribute("width", this.scale*0.95);
+    this.smalltile.setAttribute("depth", this.scale*0.95);
 
     this.obj.append(this.bigtile)
     this.obj.append(this.smalltile)

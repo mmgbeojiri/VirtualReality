@@ -15,7 +15,7 @@ class Wall {
     this.wall.setAttribute("depth", this.scale)
     this.wall.setAttribute("position",{x:this.x,y:this.y,z:this.z});
     this.wall.setAttribute("src", "#backroomsWallpaper")
-    this.wall.setAttribute("repeat", "1 3")
+    this.wall.setAttribute("repeat", "1 2")
 
     this.board = document.createElement("a-box")
     this.board.setAttribute("color", "#636232");

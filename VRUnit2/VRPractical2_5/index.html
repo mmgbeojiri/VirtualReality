@@ -7,17 +7,20 @@
     <script src="ceiling.js"></script>
   </head>
   <body>
-    <a-scene>
+    <a-scene shadow="type: pcf">
       <a-assets>
         <!-- Challenge
              Upload a picture to use as the texture for the walls of your maze if you want
         -->
              <img src="backroomsWallpaper.png" id="backroomsWallpaper"/>
+             <img src="carpet.jpg" id="carpet" />
+             <img src="tile.jpg" id="tile" />
       </a-assets>
       <a-plane position="0 0 0" rotation="-90 0 0" width="150" height="150" color="#719932"></a-plane>
       
       
       <a-sky color="lightblue"></a-sky>
-      <a-camera position="18 1.3 10"> 
+      <!--      <a-light type="ambient" color="#222"></a-light> -->
+      <a-camera pointerLockEnabled="true" position="18 1.3 10"> 
       </a-camera>
 </html>
